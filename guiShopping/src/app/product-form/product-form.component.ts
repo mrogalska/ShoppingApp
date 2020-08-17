@@ -36,7 +36,6 @@ export class ProductFormComponent implements OnInit {
     this.productService.addProduct(this.product).subscribe(result => this.goToProductList());
   }
 
-
   goToProductList() {
     this.router.navigate(['/products'])
   }

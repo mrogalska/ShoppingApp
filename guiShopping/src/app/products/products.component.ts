@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Product } from '../product';
 import { ProductService } from '../product.service';
 import {MatTableModule, MatTableDataSource} from '@angular/material/table'; 
 import { SelectionModel } from '@angular/cdk/collections';
-// import { runInThisContext } from 'vm';
 
 @Component({
   selector: 'app-products',
