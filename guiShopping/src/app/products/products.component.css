@@ -1,0 +1,39 @@
+/* ProductsComponent's private CSS styles */
+
+
+table {
+  width: 60%;
+}
+
+tr.mat-footer-row {
+  font-weight: bold;
+}
+
+.mat-row:hover {
+  color: #868e96;
+  background-color: #f7f7f7;
+  bottom: .1em;
+}
+
+.add {
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.button-add {
+  background-color: #5cb85c
+}
+
+.header-align-right {
+  text-align: right;
+}
+
+a {
+  cursor: pointer;
+  color: #868e96;
+  visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
+}

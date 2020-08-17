@@ -1,0 +1,32 @@
+<div class="container-fluid">
+      <form (ngSubmit)="onSubmit()" #productForm="ngForm">
+        <h1>Add new product</h1>
+
+        <mat-form-field  appearance="outline" class="name-form">
+          <mat-label for="name">Name</mat-label>
+          <input type="text" text-transform: uppercase [(ngModel)]="product.name" matInput placeholder="name" value="{{product.name}}" id="name" name="name" required #name="ngModel">
+        </mat-form-field>
+
+        <mat-form-field  appearance="outline" class="price-form">
+          <mat-label for="price">Price</mat-label>
+          <input type="number" [(ngModel)]="product.price" matInput placeholder="price" value="{{product.price}}" id="price" name="price" required #price="ngModel">
+          <span matPrefix>$&nbsp;</span>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label for="category">Category</mat-label>
+          <mat-select [(ngModel)]="product.category"  id="category" name="category" required #category="ngModel">
+            <mat-option *ngFor="let key of categories" [value]="key">
+              {{ key }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <p>
+          <button mat-raised-button color="accent" type="submit" [disabled]="!productForm.form.valid || product.category==null" >Add</button>
+          <button mat-stroked-button color="accent" type="reset" (click)="goBack()">Go back</button>
+        </p>
+
+      </form>
+
+  </div>
