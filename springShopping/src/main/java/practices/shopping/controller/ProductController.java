@@ -19,7 +19,9 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping(value = "/products")
 public class ProductController {
+
 
     private final ProductRepository productRepository;
 //    private final ListRepository listRepository;
@@ -37,27 +39,26 @@ public class ProductController {
 
 
     
-    @RequestMapping(value = "/products", method = RequestMethod.GET)
+    @GetMapping(value = "/getAll")
     public ResponseEntity<Object> getAllProducts() {
         return new ResponseEntity<>(productService.getAllProducts(), HttpStatus.OK);
     }
 
 
-    @RequestMapping(value = "/products/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/getById/{id}")
     public ResponseEntity<ProductEntity> getProductById(@PathVariable(value = "id") Long productId) {
         return new ResponseEntity<>(productService.getProductById(productId), HttpStatus.OK);
     }
 
 
-    @RequestMapping(value = "/products", method = RequestMethod.POST,
-            produces = "application/json", consumes = "application/json")
+    @PostMapping(value = "/add", produces = "application/json", consumes = "application/json")
     public ResponseEntity<Object> createProduct(@RequestBody ProductEntity productEntity) {
 
         return new ResponseEntity<>(productService.createProduct(productEntity), HttpStatus.CREATED);
     }
 
 
-    @RequestMapping(value = "/products/{id}", method = RequestMethod.PUT)
+    @PutMapping(value = "/update/{id}")
     public ResponseEntity<Object> updateProduct(@PathVariable(value = "id") Long productId,
                                                        @Validated @RequestBody ProductEntity productDetails) {
         try {
@@ -69,7 +70,7 @@ public class ProductController {
     }
 
 
-    @RequestMapping(value = "/products/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping(value = "/delete/{id}")
     public ResponseEntity<Object> deleteProduct(@PathVariable(value = "id") Long productId) {
         productService.deleteProduct(productId);
         return new ResponseEntity<>("Product has been deleted", HttpStatus.OK);
