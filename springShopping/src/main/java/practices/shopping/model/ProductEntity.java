@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.Set;
 
 @Entity
-@Table(name = "USER_PRODUCTS")
+@Table(name = "PRODUCTS")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -23,7 +23,7 @@ public class ProductEntity implements Serializable {
     @Column(length = 500)
     private String name;
 
-    @Column()
+    @Column(columnDefinition = "default double 0.0")
     private double price;
 
     @Column()
@@ -33,9 +33,6 @@ public class ProductEntity implements Serializable {
     Set<UserProducts> userProducts;
 
 
-
-//    @OneToMany(mappedBy = "productEntity")
-//    Set<ProductsOnList> productsOnLists;
 
     public ProductEntity(long id) {
         this.id = id;
@@ -73,11 +70,4 @@ public class ProductEntity implements Serializable {
         this.category = category;
     }
 
-//    public Set<ProductsOnList> getProductsOnLists() {
-//        return productsOnLists;
-//    }
-//
-//    public void setProductsOnLists(Set<ProductsOnList> productsOnLists) {
-//        this.productsOnLists = productsOnLists;
-//    }
 }
