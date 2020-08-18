@@ -1,5 +1,6 @@
 package practices.shopping.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -9,6 +10,7 @@ import practices.shopping.model.ProductEntity;
 import practices.shopping.model.ProductsOnList;
 import practices.shopping.repository.ListRepository;
 import practices.shopping.repository.ProductRepository;
+import practices.shopping.service.ProductService;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -22,6 +24,9 @@ public class ProductController {
     private final ProductRepository productRepository;
     private final ListRepository listRepository;
 
+    @Autowired
+    ProductService productService;
+
     public ProductController(final ProductRepository productRepository, final ListRepository listRepository) {
         this.productRepository = productRepository;
         this.listRepository = listRepository;
@@ -30,50 +35,41 @@ public class ProductController {
 
     
     @RequestMapping(value = "/products", method = RequestMethod.GET)
-    public ResponseEntity<List<ProductEntity>> getAllProducts() {
-        return new ResponseEntity<>(this.productRepository.findAll(), HttpStatus.OK);
+    public ResponseEntity<Object> getAllProducts() {
+        return new ResponseEntity<>(productService.getAllProducts(), HttpStatus.OK);
     }
+
 
     @RequestMapping(value = "/products/{id}", method = RequestMethod.GET)
     public ResponseEntity<ProductEntity> getProductById(@PathVariable(value = "id") Long productId) {
-        Optional<ProductEntity> productEntityOptional = productRepository.findById(productId);
-        ProductEntity productEntity = productEntityOptional.get();
-        return new ResponseEntity<>(productEntity, HttpStatus.OK);
+        return new ResponseEntity<>(productService.getProductById(productId), HttpStatus.OK);
     }
 
 
+    @RequestMapping(value = "/products", method = RequestMethod.POST,
+            produces = "application/json", consumes = "application/json")
+    public ResponseEntity<Object> createProduct(@RequestBody ProductEntity productEntity) {
 
-
-    @RequestMapping(value = "/products", method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
-    public ResponseEntity<ProductEntity> createProduct(@RequestBody ProductEntity productEntity) {
-        return new ResponseEntity<>(this.productRepository.save(productEntity), HttpStatus.OK);
+        return new ResponseEntity<>(productService.createProduct(productEntity), HttpStatus.CREATED);
     }
-    
-
-
 
 
     @RequestMapping(value = "/products/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<ProductEntity> updateProduct(@PathVariable(value = "id") Long productId,
+    public ResponseEntity<Object> updateProduct(@PathVariable(value = "id") Long productId,
                                                        @Validated @RequestBody ProductEntity productDetails) {
-        Optional<ProductEntity> productEntityOptional = productRepository.findById(productId);
-        ProductEntity productEntity;
         try {
-            productEntity = productEntityOptional.get();
-            productEntity.setName(productDetails.getName());
-            productEntity.setCategory(productDetails.getCategory());
-            productEntity.setPrice(productDetails.getPrice());
+            return new ResponseEntity<>(productService.updateProduct(productId, productDetails), HttpStatus.OK);
         } catch (NoSuchElementException ex) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(this.productRepository.save(productEntity), HttpStatus.OK);
+
     }
 
 
-
     @RequestMapping(value = "/products/{id}", method = RequestMethod.DELETE)
-    void deleteProduct(@PathVariable(value = "id") Long productId) {
-        productRepository.deleteById(productId);
+    public ResponseEntity<Object> deleteProduct(@PathVariable(value = "id") Long productId) {
+        productService.deleteProduct(productId);
+        return new ResponseEntity<>("Product has been deleted", HttpStatus.OK);
     }
 
 
