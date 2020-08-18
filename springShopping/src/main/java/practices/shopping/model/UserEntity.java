@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.Set;
 
+// Lombok
 @Entity
 @Table(name = "USERS")
 @AllArgsConstructor

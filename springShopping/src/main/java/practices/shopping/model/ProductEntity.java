@@ -8,11 +8,13 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
+// Poczytaj co to Lombok
 @Entity
 @Table(name = "USER_PRODUCTS")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+// doczytaj co to serializable
 public class ProductEntity implements Serializable {
 
 
@@ -23,9 +25,11 @@ public class ProductEntity implements Serializable {
     @Column(length = 500)
     private String name;
 
+//    po co
     @Column()
     private double price;
 
+    //    po co
     @Column()
     private String category;
 
@@ -33,7 +37,7 @@ public class ProductEntity implements Serializable {
     Set<UserProducts> userProducts;
 
 
-
+// Usuwamy takie fragmenty kodu od tego mamy gita
 //    @OneToMany(mappedBy = "productEntity")
 //    Set<ProductsOnList> productsOnLists;
 

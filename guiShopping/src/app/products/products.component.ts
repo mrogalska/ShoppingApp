@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../product';
 import { ProductService } from '../product.service';
-import {MatTableModule, MatTableDataSource} from '@angular/material/table'; 
+import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 
 @Component({
@@ -10,6 +10,8 @@ import { SelectionModel } from '@angular/cdk/collections';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
+
+  // Pola prywatne, enkapsulacja danych
   displayedColumns: string[] = ['name', 'category', 'price', 'id'];
   products: Product[];
   showOptions: number = 0;
@@ -19,16 +21,17 @@ export class ProductsComponent implements OnInit {
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
+    // osobna funkcja
     this.productService.getProducts().subscribe(data => {
       this.products = data;
     })
   }
 
+  //  czemu tu bezpośrednio id nie przysyłasz?
   delete(product: Product): void {
     this.products = this.products.filter(h => h !== product);
     this.productService.deleteProduct(product).subscribe();
   }
-
   // getTotalCost(): number {
   //   this.pricesArray = this.products.map(t => t.price);
   //   this.amountArray = this.products.map(t => t.amount);
@@ -44,9 +47,9 @@ export class ProductsComponent implements OnInit {
   //   return this.products.map(t => t.amount).reduce((acc, value) => acc + value, 0);
   // }
 
-//   sum(a, b): number {
-//     return a + b;
-// }
+  //   sum(a, b): number {
+  //     return a + b;
+  // }
 
 }
 

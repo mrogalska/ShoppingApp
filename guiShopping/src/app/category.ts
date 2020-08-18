@@ -1,3 +1,4 @@
+// tak enum wygląda ? 
 export enum Category {
     "Vegetables" = "Vegetables",
     "Fruits" = "Fruits",

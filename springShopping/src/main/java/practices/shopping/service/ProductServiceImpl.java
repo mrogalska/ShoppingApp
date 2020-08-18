@@ -14,6 +14,7 @@ import java.util.Optional;
 @Service
 public class ProductServiceImpl implements ProductService {
 
+//    przez konstruktor
     @Autowired
     private ProductRepository productRepository;
 
@@ -28,6 +29,8 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductEntity getProductById(Long productId) {
         Optional<ProductEntity> productEntityOptional = productRepository.findById(productId);
+
+//        No tak optionale nie działają
         ProductEntity productEntity = productEntityOptional.get();
         return productEntity;
     }
@@ -42,6 +45,8 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductEntity updateProduct(Long productId, ProductEntity productDetails) {
         Optional<ProductEntity> productEntityOptional = productRepository.findById(productId);
+
+        //        No tak optionale nie działają
         ProductEntity productEntity = productEntityOptional.get();
         productEntity.setName(productDetails.getName());
         productEntity.setCategory(productDetails.getCategory());
