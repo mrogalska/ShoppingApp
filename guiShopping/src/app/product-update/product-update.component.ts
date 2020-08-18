@@ -10,11 +10,11 @@ import { Category } from '../category';
 
 
 @Component({
-  selector: 'app-product-detail',
-  templateUrl: './product-detail.component.html',
-  styleUrls: [ './product-detail.component.css' ]
+  selector: 'app-product-update',
+  templateUrl: './product-update.component.html',
+  styleUrls: [ './product-update.component.css' ]
 })
-export class ProductDetailComponent implements OnInit {
+export class ProductUpdateComponent implements OnInit {
   @Input() product: Product;
   public category = Category;
   public categories = [];

@@ -6,11 +6,11 @@ import { Category } from '../category';
 import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-product-form',
-  templateUrl: './product-form.component.html',
-  styleUrls: ['./product-form.component.css']
+  selector: 'app-product-add',
+  templateUrl: './product-add.component.html',
+  styleUrls: ['./product-add.component.css']
 })
-export class ProductFormComponent implements OnInit {
+export class ProductAddComponent implements OnInit {
   product: Product;
   public category = Category;
   public categories = [];

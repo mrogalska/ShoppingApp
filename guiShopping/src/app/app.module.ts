@@ -2,12 +2,11 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { ProductUpdateComponent } from './product-update/product-update.component';
 import { ProductsComponent} from './products/products.component';
-import { ProductFormComponent } from './product-form/product-form.component';
+import { ProductAddComponent } from './product-add/product-add.component';
 import { ProductService } from './product.service';
 import { Category } from './category';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -40,8 +39,8 @@ import {MatSelectModule} from '@angular/material/select';
   declarations: [
     AppComponent,
     ProductsComponent,
-    ProductDetailComponent,
-    ProductFormComponent
+    ProductUpdateComponent,
+    ProductAddComponent
   ],
   providers: [
     ProductService,
