@@ -5,10 +5,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import practices.shopping.model.ListEntity;
 import practices.shopping.model.ProductEntity;
-import practices.shopping.model.ProductsOnList;
-import practices.shopping.repository.ListRepository;
+//import practices.shopping.model.ListEntity;
+//import practices.shopping.model.ProductsOnList;
+//import practices.shopping.repository.ListRepository;
 import practices.shopping.repository.ProductRepository;
 import practices.shopping.service.ProductService;
 
@@ -22,14 +22,17 @@ import java.util.Optional;
 public class ProductController {
 
     private final ProductRepository productRepository;
-    private final ListRepository listRepository;
+//    private final ListRepository listRepository;
 
     @Autowired
     ProductService productService;
 
-    public ProductController(final ProductRepository productRepository, final ListRepository listRepository) {
+//    public ProductController(final ProductRepository productRepository, final ListRepository listRepository) {
+//        this.productRepository = productRepository;
+//        this.listRepository = listRepository;
+//    }
+    public ProductController(final ProductRepository productRepository) {
         this.productRepository = productRepository;
-        this.listRepository = listRepository;
     }
 
 

@@ -9,11 +9,10 @@ import java.io.Serializable;
 import java.util.Set;
 
 @Entity
-@Table(name = "PRODUCTS")
+@Table(name = "USER_PRODUCTS")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-
 public class ProductEntity implements Serializable {
 
 
@@ -24,14 +23,19 @@ public class ProductEntity implements Serializable {
     @Column(length = 500)
     private String name;
 
-    @Column(columnDefinition = "default double 0.0")
+    @Column()
     private double price;
 
     @Column()
     private String category;
 
     @OneToMany(mappedBy = "productEntity")
-    Set<ProductsOnList> productsOnLists;
+    Set<UserProducts> userProducts;
+
+
+
+//    @OneToMany(mappedBy = "productEntity")
+//    Set<ProductsOnList> productsOnLists;
 
     public ProductEntity(long id) {
         this.id = id;
@@ -69,11 +73,11 @@ public class ProductEntity implements Serializable {
         this.category = category;
     }
 
-    public Set<ProductsOnList> getProductsOnLists() {
-        return productsOnLists;
-    }
-
-    public void setProductsOnLists(Set<ProductsOnList> productsOnLists) {
-        this.productsOnLists = productsOnLists;
-    }
+//    public Set<ProductsOnList> getProductsOnLists() {
+//        return productsOnLists;
+//    }
+//
+//    public void setProductsOnLists(Set<ProductsOnList> productsOnLists) {
+//        this.productsOnLists = productsOnLists;
+//    }
 }
