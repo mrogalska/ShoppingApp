@@ -26,6 +26,7 @@ public class ProductController {
     private final ProductRepository productRepository;
 //    private final ListRepository listRepository;
 
+//    Jeśli wstrzykujesz, to lepiej przez kontruktor jak wyżej
     @Autowired
     ProductService productService;
 
@@ -33,6 +34,7 @@ public class ProductController {
 //        this.productRepository = productRepository;
 //        this.listRepository = listRepository;
 //    }
+//    Nic nie wnosi
     public ProductController(final ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
@@ -69,13 +71,8 @@ public class ProductController {
 
     }
 
-
     @DeleteMapping(value = "/delete/{id}")
     public ResponseEntity<Object> deleteProduct(@PathVariable(value = "id") Long productId) {
-        productService.deleteProduct(productId);
-        return new ResponseEntity<>("Product has been deleted", HttpStatus.OK);
-    }
-
 
 
 }

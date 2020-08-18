@@ -8,11 +8,13 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
+// Poczytaj co to Lombok
 @Entity
 @Table(name = "PRODUCTS")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+// doczytaj co to serializable
 public class ProductEntity implements Serializable {
 
 
@@ -26,6 +28,7 @@ public class ProductEntity implements Serializable {
     @Column(columnDefinition = "default double 0.0")
     private double price;
 
+    //    po co
     @Column()
     private String category;
 
