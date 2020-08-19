@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../application/domain/external/product';
-import { ProductService } from '../application/services/product.service';
+import { Product } from '../../domain/external/product';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-products',
@@ -30,24 +30,6 @@ export class ProductsComponent implements OnInit {
     this.products = this.products.filter(h => h !== product);
     this.productService.deleteProduct(product).subscribe();
   }
-  // getTotalCost(): number {
-  //   this.pricesArray = this.products.map(t => t.price);
-  //   this.amountArray = this.products.map(t => t.amount);
-  //   var prod = [];
-  //   for(var i = 0; i < this.amountArray.length; i++) {
-  //     prod.push(this.pricesArray[i] * this.amountArray[i]);
-  //   }
-  //   console.log(prod);
-  //   return prod.reduce(this.sum, 0);
-  // }
-
-  // getTotalAmount(): number {
-  //   return this.products.map(t => t.amount).reduce((acc, value) => acc + value, 0);
-  // }
-
-  //   sum(a, b): number {
-  //     return a + b;
-  // }
 
 }
 

@@ -11,7 +11,7 @@ import { Category } from './application/domain/enums/category';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from "./modules/material.module";
 import { NavbarComponent } from './application/views/navbar/navbar.component';
-import { ProductsComponent } from "./products/products.component";
+import { ProductsComponent } from "./application/views/products/products.component";
 @NgModule({
   imports: [
     BrowserModule,
