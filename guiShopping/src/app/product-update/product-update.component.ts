@@ -3,9 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { Product } from '../product';
+import { Product } from '../application/domain/external/product';
 import { ProductService } from '../product.service';
-import { Category } from '../category';
+import { Category } from '../application/domain/enums/category';
+import { MaterialModule } from "../modules/material.module";
 
 
 

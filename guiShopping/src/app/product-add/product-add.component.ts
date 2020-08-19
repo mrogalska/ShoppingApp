@@ -1,9 +1,10 @@
 import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../product.service';
-import { Product } from '../product';
-import { Category } from '../category';
+import { Product } from '../application/domain/external/product';
+import { Category } from '../application/domain/enums/category';
 import { Location } from '@angular/common';
+import { MaterialModule } from "../modules/material.module";
 
 @Component({
   selector: 'app-product-add',

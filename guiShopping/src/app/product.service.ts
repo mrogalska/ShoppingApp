@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { Product } from './product';;
+import { Product } from './application/domain/external/product';;
 
 
 @Injectable({ providedIn: 'root' })
@@ -29,18 +29,20 @@ export class ProductService {
   }
 
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.productsUrl);
+    const url = `${this.productsUrl}/getAll`;
+    return this.http.get<Product[]>(url);
   }
 
 
   getProduct(id: number): Observable<Product> {
-    const url = `${this.productsUrl}/${id}`;
+    const url = `${this.productsUrl}/getById/${id}`;
     return this.http.get<Product>(url);
   }
 
 
   addProduct(product: Product) {
-    return this.http.post<Product>(this.productsUrl, product, {
+    const url = `${this.productsUrl}/add`;
+    return this.http.post<Product>(url, product, {
       headers: new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8')
     });
   }
@@ -49,7 +51,7 @@ export class ProductService {
   updateProduct(product: Product | number): Observable<any> {
     // hmm po co to? Nie wiesz co przesyłasz?
     const id = typeof product === 'number' ? product : product.id;
-    const url = `${this.productsUrl}/${id}`;
+    const url = `${this.productsUrl}/update/${id}`;
     return this.http.put<Product>(url, product, this.httpOptions);
   }
 
@@ -57,7 +59,7 @@ export class ProductService {
   deleteProduct(product: Product | number): Observable<Product> {
     // hmm po co to? Nie wiesz co przesyłasz?
     const id = typeof product === 'number' ? product : product.id;
-    const url = `${this.productsUrl}/${id}`;
+    const url = `${this.productsUrl}/delete/${id}`;
     return this.http.delete<Product>(url, this.httpOptions);
   }
 
