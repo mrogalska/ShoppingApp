@@ -1,12 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
-import { Product } from '../application/domain/external/product';
-import { ProductService } from '../application/services/product.service';
-import { Category } from '../application/domain/enums/category';
-import { MaterialModule } from "../modules/material.module";
+import { ProductService } from '../../../services/product.service';
+import { Product } from '../../../domain/external/product';
+import { Category } from '../../../domain/enums/category';
 
 
 

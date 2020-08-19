@@ -7,6 +7,6 @@ export enum Category {
     Dairy = "Dairy",
     Spices = "Spices",
     Drinks = "Drinks",
-    FatsAndOils = "Fats & Oils",
-    SweetsAndSnacks = "Sweets & Snacks",
+    FatsAndOils = "FatsAndOils",
+    SweetsAndSnacks = "SweetsAndSnacks"
 }
