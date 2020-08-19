@@ -6,8 +6,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import practices.shopping.model.ProductEntity;
 import practices.shopping.service.ProductService;
-import java.util.NoSuchElementException;
-
 
 
 @RestController
@@ -18,18 +16,21 @@ public class ProductController {
 
 
     public ProductController(final ProductService productService) {
+
         this.productService = productService;
     }
 
 
     @GetMapping(value = "/getAll")
     public ResponseEntity<Object> getAllProducts() {
+
         return new ResponseEntity<>(productService.getAllProducts(), HttpStatus.OK);
     }
 
 
     @GetMapping(value = "/getById/{id}")
     public ResponseEntity<ProductEntity> getProductById(@PathVariable(value = "id") Long productId) {
+
         return new ResponseEntity<>(productService.getProductById(productId), HttpStatus.OK);
     }
 
@@ -44,16 +45,13 @@ public class ProductController {
     @PutMapping(value = "/update/{id}")
     public ResponseEntity<Object> updateProduct(@PathVariable(value = "id") Long productId,
                                                 @Validated @RequestBody ProductEntity productDetails) {
-        try {
-            return new ResponseEntity<>(productService.updateProduct(productId, productDetails), HttpStatus.OK);
-        } catch (NoSuchElementException ex) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
 
+        return new ResponseEntity<>(productService.updateProduct(productId, productDetails), HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/delete/{id}")
     public ResponseEntity<Object> deleteProduct(@PathVariable(value = "id") Long productId) {
+
         productService.deleteProduct(productId);
         return new ResponseEntity<>(HttpStatus.OK);
     }

@@ -1,53 +1,48 @@
 package practices.shopping.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import practices.shopping.model.ProductEntity;
 import practices.shopping.repository.ProductRepository;
-
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+
 
 @Service
 public class ProductServiceImpl implements ProductService {
+    private final ProductRepository productRepository;
 
-//    przez konstruktor
-    @Autowired
-    private ProductRepository productRepository;
 
+    public ProductServiceImpl(final ProductRepository productRepository) {
+
+        this.productRepository = productRepository;
+    }
 
 
     @Override
     public List<ProductEntity> getAllProducts() {
+
         return productRepository.findAll();
     }
 
 
     @Override
     public ProductEntity getProductById(Long productId) {
-        Optional<ProductEntity> productEntityOptional = productRepository.findById(productId);
 
-//        No tak optionale nie działają
-        ProductEntity productEntity = productEntityOptional.get();
+        ProductEntity productEntity = productRepository.findById(productId).orElseThrow();
         return productEntity;
     }
 
 
     @Override
     public ProductEntity createProduct(ProductEntity productEntity) {
+
         return productRepository.save(productEntity);
     }
 
 
     @Override
     public ProductEntity updateProduct(Long productId, ProductEntity productDetails) {
-        Optional<ProductEntity> productEntityOptional = productRepository.findById(productId);
 
-        //        No tak optionale nie działają
-        ProductEntity productEntity = productEntityOptional.get();
+        ProductEntity productEntity = productRepository.findById(productId).orElseThrow();
         productEntity.setName(productDetails.getName());
         productEntity.setCategory(productDetails.getCategory());
         productEntity.setPrice(productDetails.getPrice());
@@ -57,6 +52,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void deleteProduct(Long productId) {
+
         productRepository.deleteById(productId);
     }
 
