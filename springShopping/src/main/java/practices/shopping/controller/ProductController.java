@@ -1,46 +1,27 @@
 package practices.shopping.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import practices.shopping.model.ProductEntity;
-//import practices.shopping.model.ListEntity;
-//import practices.shopping.model.ProductsOnList;
-//import practices.shopping.repository.ListRepository;
-import practices.shopping.repository.ProductRepository;
 import practices.shopping.service.ProductService;
-
-import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
+
 
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(value = "/products")
 public class ProductController {
+    private final ProductService productService;
 
 
-    private final ProductRepository productRepository;
-//    private final ListRepository listRepository;
-
-//    Jeśli wstrzykujesz, to lepiej przez kontruktor jak wyżej
-    @Autowired
-    ProductService productService;
-
-//    public ProductController(final ProductRepository productRepository, final ListRepository listRepository) {
-//        this.productRepository = productRepository;
-//        this.listRepository = listRepository;
-//    }
-//    Nic nie wnosi
-    public ProductController(final ProductRepository productRepository) {
-        this.productRepository = productRepository;
+    public ProductController(final ProductService productService) {
+        this.productService = productService;
     }
 
 
-    
     @GetMapping(value = "/getAll")
     public ResponseEntity<Object> getAllProducts() {
         return new ResponseEntity<>(productService.getAllProducts(), HttpStatus.OK);
@@ -62,7 +43,7 @@ public class ProductController {
 
     @PutMapping(value = "/update/{id}")
     public ResponseEntity<Object> updateProduct(@PathVariable(value = "id") Long productId,
-                                                       @Validated @RequestBody ProductEntity productDetails) {
+                                                @Validated @RequestBody ProductEntity productDetails) {
         try {
             return new ResponseEntity<>(productService.updateProduct(productId, productDetails), HttpStatus.OK);
         } catch (NoSuchElementException ex) {
@@ -73,6 +54,8 @@ public class ProductController {
 
     @DeleteMapping(value = "/delete/{id}")
     public ResponseEntity<Object> deleteProduct(@PathVariable(value = "id") Long productId) {
-
+        productService.deleteProduct(productId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
 }
