@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { ProductService } from '../../../services/product.service';
 import { Product } from '../../../domain/external/product';
@@ -13,31 +13,39 @@ import { Category } from '../../../domain/enums/category';
 })
 export class ProductAddComponent implements OnInit {
   product: Product;
-  public category = Category;
-  public categories = [];
+  private _category = Category;
+  private _categories = [];
 
   constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private productService: ProductService,
-    private location: Location
+    private _router: Router,
+    private _productService: ProductService,
+    private _location: Location
   ) {
     this.product = new Product();
   }
 
+  public get $category() {
+    return this._category;
+  }
+
+  public get $categories() {
+  return this._categories;
+  }
+
+
   ngOnInit(): void {
-    this.categories = Object.keys(this.category);
+    this._categories = Object.keys(this._category);
   }
 
   goBack(): void {
-    this.location.back();
+    this._location.back();
   }
 
   onSubmit() {
-    this.productService.addProduct(this.product).subscribe(result => this.goToProductList());
+    this._productService.addProduct(this.product).subscribe(result => this.goToProductList());
   }
 
   goToProductList() {
-    this.router.navigate(['/products'])
+    this._router.navigate(['/products'])
   }
 }
