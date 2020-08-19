@@ -1,6 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProductService } from '../product.service';
+import { ProductService } from '../application/services/product.service';
 import { Product } from '../application/domain/external/product';
 import { Category } from '../application/domain/enums/category';
 import { Location } from '@angular/common';

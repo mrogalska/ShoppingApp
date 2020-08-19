@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductUpdateComponent } from './product-update/product-update.component';
 import { ProductAddComponent } from './product-add/product-add.component';
-import { ProductService } from './product.service';
+import { ProductService } from './application/services/product.service';
 import { Category } from './application/domain/enums/category';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from "./modules/material.module";
