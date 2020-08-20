@@ -19,7 +19,6 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit() {
     this.getProducts();
-
   }
 
   getProducts() {
@@ -28,11 +27,23 @@ export class ProductsComponent implements OnInit {
     })
   }
 
-    //  czemu tu bezpośrednio id nie przysyłasz?
-    delete(product: Product): void {
-      this._products = this._products.filter(h => h !== product);
-      this.productService.deleteProduct(product).subscribe();
-    }
+  delete(id: number): void {
+    this.productService.deleteProduct(id).subscribe(
+      (element) => {
+        if(!element) {
+          setTimeout(() => {
+            this.getProducts();
+          }, 10);
+        }
+      }, (error) => {
+        if (error.status == 500) {
+          alert("This product has been already deleted");
+          this.getProducts();
+        }
+      }
+    )
+  }
+
 
 
   // getters and setters
