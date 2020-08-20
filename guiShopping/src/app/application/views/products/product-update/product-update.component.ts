@@ -15,34 +15,41 @@ import { Category } from '../../../domain/enums/category';
 export class ProductUpdateComponent implements OnInit {
   @Input() product: Product;
 
-  // Pola prywatne
-  public category = Category;
-  public categories = [];
+  public _category = Category;
+  public _categories = [];
 
   constructor(
     // prywatne zaczynamy od _
-    private route: ActivatedRoute,
-    private productService: ProductService,
-    private location: Location
+    private _route: ActivatedRoute,
+    private _productService: ProductService,
+    private _location: Location
   ) { }
 
   ngOnInit(): void {
     this.getProduct();
-    this.categories = Object.keys(this.category);
+    this._categories = Object.keys(this._category);
+  }
+
+  public get $category() {
+    return this._category;
+  }
+
+  public get $categories() {
+  return this._categories;
   }
 
   getProduct(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.productService.getProduct(id)
+    const id = +this._route.snapshot.paramMap.get('id');
+    this._productService.getProduct(id)
       .subscribe(product => this.product = product);
   }
 
   goBack(): void {
-    this.location.back();
+    this._location.back();
   }
 
   save(): void {
-    this.productService.updateProduct(this.product)
+    this._productService.updateProduct(this.product)
       .subscribe(() => this.goBack());
   }
 

@@ -15,8 +15,8 @@
       <mat-form-field appearance="fill">
         <mat-label>Category</mat-label>
         <mat-select [(ngModel)]="product.category">
-          <mat-option *ngFor="let key of categories" [value]="category[key]">
-            {{ category[key] }}
+          <mat-option *ngFor="let key of $categories" [value]="$category[key]">
+            {{ $category[key] }}
           </mat-option>
         </mat-select>
       </mat-form-field>
