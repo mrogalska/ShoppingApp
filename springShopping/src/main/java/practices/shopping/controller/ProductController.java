@@ -10,7 +10,7 @@ import practices.shopping.service.ProductService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping(value = "/products")
+@RequestMapping("/products")
 public class ProductController {
     private final ProductService productService;
 
@@ -21,35 +21,35 @@ public class ProductController {
     }
 
 
-    @GetMapping(value = "/getAll")
+    @GetMapping()
     public ResponseEntity<Object> getAllProducts() {
 
         return new ResponseEntity<>(productService.getAllProducts(), HttpStatus.OK);
     }
 
 
-    @GetMapping(value = "/getById/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<ProductEntity> getProductById(@PathVariable(value = "id") Long productId) {
 
         return new ResponseEntity<>(productService.getProductById(productId), HttpStatus.OK);
     }
 
 
-    @PostMapping(value = "/add", produces = "application/json", consumes = "application/json")
+    @PostMapping(produces = "application/json", consumes = "application/json")
     public ResponseEntity<Object> createProduct(@RequestBody ProductEntity productEntity) {
 
         return new ResponseEntity<>(productService.createProduct(productEntity), HttpStatus.CREATED);
     }
 
 
-    @PutMapping(value = "/update/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Object> updateProduct(@PathVariable(value = "id") Long productId,
                                                 @Validated @RequestBody ProductEntity productDetails) {
 
         return new ResponseEntity<>(productService.updateProduct(productId, productDetails), HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteProduct(@PathVariable(value = "id") Long productId) {
 
         productService.deleteProduct(productId);

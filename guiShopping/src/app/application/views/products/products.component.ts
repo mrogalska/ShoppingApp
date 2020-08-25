@@ -38,8 +38,8 @@ export class ProductsComponent implements OnInit {
       }, (error) => {
         if (error.status == 500) {
           alert("This product has been already deleted");
-          this.getProducts();
         }
+        this.getProducts();
       }
     )
   }

@@ -24,32 +24,32 @@ export class ProductService {
 
 
   getProducts(): Observable<Product[]> {
-    const url = `${serverUrl}/getAll`;
+    const url = `${serverUrl}`;
     return this.http.get<Product[]>(url);
   }
 
 
   getProduct(id: number): Observable<Product> {
-    const url = `${serverUrl}/getById/${id}`;
+    const url = `${serverUrl}/${id}`;
     return this.http.get<Product>(url);
   }
 
 
   addProduct(product: Product) {
-    const url = `${serverUrl}/add`;
+    const url = `${serverUrl}`;
     return this.http.post<Product>(url, product, httpOptions);
   }
 
 
   updateProduct(product: Product): Observable<Product> {
     const id = product.id;
-    const url = `${serverUrl}/update/${id}`;
+    const url = `${serverUrl}/${id}`;
     return this.http.put<Product>(url, product, httpOptions);
   }
 
 
   deleteProduct(id: number): Observable<Product> {
-    const url = `${serverUrl}/delete/${id}`;
+    const url = `${serverUrl}/${id}`;
     return this.http.delete<Product>(url, httpOptions);
   }
 

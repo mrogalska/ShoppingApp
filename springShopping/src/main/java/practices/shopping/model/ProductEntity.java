@@ -8,14 +8,15 @@ import java.util.Set;
 
 
 @Entity
-@Table(name = "PRODUCTS")
+@Table(name = "products")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 public class ProductEntity {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "_product_id_seq_gen", sequenceName = "_product_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "_product_id_seq_gen")
     private long id;
 
     @Column(length = 500)
@@ -26,7 +27,8 @@ public class ProductEntity {
 
     private String category;
 
-    @OneToMany(mappedBy = "productEntity")
-    Set<UserProducts> userProducts;
+//    @OneToMany(mappedBy = "productEntity")
+//    Set<UserProduct> userProducts;
+
 
 }
