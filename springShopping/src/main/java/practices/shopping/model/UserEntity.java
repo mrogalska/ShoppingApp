@@ -3,14 +3,26 @@ package practices.shopping.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import javax.persistence.*;
 
-@Data
+
+@Entity
+@Table(name = "users")
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class UserEntity {
 
-    private int id;
-    private String name;
-    private String email;
-    private String mobile;
+    @Id
+    @SequenceGenerator(name = "_user_id_seq_gen", sequenceName = "_user_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "_user_id_seq_gen")
+    private long id;
+
+    private String username;
+
+    private String password;
+
+    private RoleType role;
+
+
 }
