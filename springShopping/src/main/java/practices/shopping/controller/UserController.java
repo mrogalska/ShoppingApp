@@ -20,7 +20,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping()
     public ResponseEntity<Object> getAllUsers() {
 

@@ -49,11 +49,11 @@ public class JwtAuthFilter extends UsernamePasswordAuthenticationFilter {
         String token = Jwts.builder()
                 .setSubject(authResult.getName())
                 .claim("role", authResult.getAuthorities())
-                .setExpiration(new Date(System.currentTimeMillis() + JwtConfig.TOKEN_EXPIRATION))
-                .signWith(SignatureAlgorithm.HS512, JwtConfig.SECRET_KEY.getBytes())
+                .setExpiration(new Date(System.currentTimeMillis() + jwtConfig.TOKEN_EXPIRATION))
+                .signWith(SignatureAlgorithm.HS512, jwtConfig.SECRET_KEY.getBytes())
                 .compact();
 
-        response.addHeader(JwtConfig.HEADER_STRING, JwtConfig.TOKEN_PREFIX + token);
+        response.addHeader(JwtConfig.HEADER_STRING, jwtConfig.TOKEN_PREFIX + token);
 
     }
 }

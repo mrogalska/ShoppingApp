@@ -5,7 +5,7 @@ import { Product } from '../domain/external/product';
 import { environment } from "../../../environments/environment";
 
 
-const serverUrl = 'http://localhost:8090/products';
+const serverUrl = environment.serverApiUrl+'/products';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json; charset=utf-8',

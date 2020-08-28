@@ -24,5 +24,8 @@ public class UserEntity {
 
     private RoleType role;
 
+    public RoleType getRole() {
+        return role;
+    }
 
 }

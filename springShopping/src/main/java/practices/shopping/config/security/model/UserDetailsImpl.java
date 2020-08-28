@@ -14,6 +14,7 @@ public class UserDetailsImpl implements UserDetails {
     private static final long serialVersionUID = 1L;
     private final UserEntity userEntity;
 
+
     public UserDetailsImpl(UserEntity userEntity) {
         this.userEntity = userEntity;
     }

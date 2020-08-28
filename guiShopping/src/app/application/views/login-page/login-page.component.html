@@ -1,0 +1,51 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="sidenav">
+    <div class="login-main-text">
+        <h2>Application<br> Login Page</h2>
+        <p>Login or register from here to access.</p>
+    </div>
+</div>
+<div class="main">
+    <div class="col-md-6 col-sm-12">
+        <div class="login-form">
+            <form action="login" method="POST">
+                <div class="form-group">
+                    <label>User Name</label>
+                    <input type="text" class="form-control" name="username" [(ngModel)]="username" id="username" placeholder="User Name">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" class="form-control" name="password" [(ngModel)]="password" id="password" placeholder="Password">
+                </div>
+                <button type="submit" class="btn btn-black" name="login" id="login" value="login" (click)="doLogin()">Login</button>
+                <button type="submit" class="btn btn-secondary">Register</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- <div class="background-wrap">
+    <div class="background"></div>
+  </div>
+ 
+  <form id="accesspanel" action="">
+    <h1 id="litheader">Login</h1>
+    <div class="inset">
+      <p>
+        <input type="text" name="username" [(ngModel)]="username" id="username" placeholder="username">
+      </p>
+      <p>
+        <input type="password" name="password" [(ngModel)]="password" id="password" placeholder="password">
+      </p>
+    </div>
+    <p class="p-container">
+      <input type="submit" name="Login" id="go" value="Login" (click)="doLogin()">
+    </p>
+  </form> -->

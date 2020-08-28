@@ -12,8 +12,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from "./modules/material.module";
 import { NavbarComponent } from './application/views/navbar/navbar.component';
 import { ProductsComponent } from "./application/views/products/products.component";
-import { LoginComponent } from './application/views/login/login.component';
-import { LoginService } from './application/services/login.service';
+import { LoginService } from "./application/services/login.service";
+import { LoginPageComponent } from './application/views/login-page/login-page.component';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -32,7 +33,7 @@ import { LoginService } from './application/services/login.service';
     ProductAddComponent,
     NavbarComponent,
     ProductsComponent,
-    LoginComponent
+    LoginPageComponent,
   ],
   providers: [
     ProductService,
@@ -41,3 +42,4 @@ import { LoginService } from './application/services/login.service';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

@@ -37,15 +37,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        http
+                .cors().configurationSource(corsConfigurationSource())
                 .and()
+                .csrf().disable()
+                .httpBasic();
+    }
+
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http
+//                .cors().configurationSource(corsConfigurationSource())
+//                .and()
+//                .csrf().disable()
+//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                .and()
 //                .addFilter(new JwtAuthFilter(authenticationManager()))
 //                .addFilterAfter(new JwtTokenValidator(), JwtAuthFilter.class)
-                .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/login").permitAll()
-                .antMatchers("/api/report/*").hasAuthority(RoleType.ADMIN.getAuthority());
-    }
+//                .httpBasic();
+//    }
+
 
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider() {
@@ -85,23 +96,3 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
 
-
-
-//import org.springframework.context.annotation.Configuration;
-//import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
-//import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-//import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-//import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-//
-//
-//@Configuration
-//@EnableWebSecurity
-//@EnableGlobalMethodSecurity(prePostEnabled = true)
-//public class SecurityConfig extends WebSecurityConfigurerAdapter {
-//
-//
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        http.csrf().disable();
-//    }
-//}
