@@ -10,6 +10,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import practices.shopping.config.security.model.UserLogin;
 
+import javax.crypto.SecretKey;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -31,12 +32,15 @@ public class JwtAuthFilter extends UsernamePasswordAuthenticationFilter {
 
         try {
             UserLogin userLogin = new ObjectMapper().readValue(request.getInputStream(), UserLogin.class);
+
             Authentication authentication = new UsernamePasswordAuthenticationToken(
                     userLogin.getUsername(),
                     userLogin.getPassword()
             );
 
-            return authenticationManager.authenticate(authentication);
+            Authentication authenticate = authenticationManager.authenticate(authentication);
+
+            return authenticate;
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -50,7 +54,7 @@ public class JwtAuthFilter extends UsernamePasswordAuthenticationFilter {
                 .setSubject(authResult.getName())
                 .claim("role", authResult.getAuthorities())
                 .setExpiration(new Date(System.currentTimeMillis() + jwtConfig.TOKEN_EXPIRATION))
-                .signWith(SignatureAlgorithm.HS512, jwtConfig.SECRET_KEY.getBytes())
+                .signWith(SignatureAlgorithm.HS512, jwtConfig.SECRET_KEY)
                 .compact();
 
         response.addHeader(JwtConfig.HEADER_STRING, jwtConfig.TOKEN_PREFIX + token);

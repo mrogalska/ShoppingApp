@@ -33,6 +33,7 @@ public class JwtTokenValidator extends OncePerRequestFilter {
         }
 
         String token = authorizationHeader.replace("Bearer ", "");
+
         try {
 
             Jws<Claims> claimsJws = Jwts.parser()
