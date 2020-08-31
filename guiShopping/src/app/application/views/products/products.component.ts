@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../domain/external/product';
 import { ProductService } from '../../services/product.service';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-products',
@@ -15,33 +18,29 @@ export class ProductsComponent implements OnInit {
   private _pricesArray: number[];
 
 
-  constructor(private productService: ProductService) { }
+
+  constructor(private _productService: ProductService, public dialog: MatDialog) { 
+
+  }
 
   ngOnInit() {
     this.getProducts();
   }
 
   getProducts() {
-    this.productService.getProducts().subscribe(data => {
+    this._productService.getProducts().subscribe(data => {
       this._products = data;
     })
   }
 
-  delete(id: number): void {
-    this.productService.deleteProduct(id).subscribe(
-      (element) => {
-        if(!element) {
-          setTimeout(() => {
-            this.getProducts();
-          }, 10);
-        }
-      }, (error) => {
-        if (error.status == 500) {
-          alert("This product has been already deleted");
-        }
-        this.getProducts();
-      }
-    )
+  openDialog(id: number) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = id;
+    const dialogRef = this.dialog.open(DeleteDialogComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      this.getProducts();
+    });
   }
 
 

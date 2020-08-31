@@ -14,10 +14,13 @@ import { NavbarComponent } from './application/views/navbar/navbar.component';
 import { ProductsComponent } from "./application/views/products/products.component";
 import { LoginService } from "./application/services/login.service";
 import { LoginPageComponent } from './application/views/login-page/login-page.component';
+import { DeleteDialogComponent } from './application/views/products/delete-dialog/delete-dialog.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   imports: [
     BrowserModule,
+    CommonModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
@@ -34,6 +37,7 @@ import { LoginPageComponent } from './application/views/login-page/login-page.co
     NavbarComponent,
     ProductsComponent,
     LoginPageComponent,
+    DeleteDialogComponent,
   ],
   providers: [
     ProductService,
